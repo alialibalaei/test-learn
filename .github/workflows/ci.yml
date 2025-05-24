@@ -4,6 +4,14 @@ name: Simple Python Test CI
 on: [push, pull_request]
 
 jobs:
+
+  Build_Backend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: build
+        run: docker build -t test .
+
   test:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
