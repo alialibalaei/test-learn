@@ -1,76 +1,74 @@
-# main.py
+def add(first_number: float, second_number: float) -> float:
+    """
+    This function adds two numbers.
+    """
+    return first_number + second_number
 
-def جمع(عدد_اول: float, عدد_دوم: float) -> float:
+def subtract(first_number: float, second_number: float) -> float:
     """
-    این تابع دو عدد را جمع می‌کند.
+    This function subtracts the second number from the first number.
     """
-    return عدد_اول + عدد_دوم
+    return first_number - second_number
 
-def تفریق(عدد_اول: float, عدد_دوم: float) -> float:
+def multiply(first_number: float, second_number: float) -> float:
     """
-    این تابع عدد دوم را از عدد اول کم می‌کند.
+    This function multiplies two numbers.
     """
-    return عدد_اول - عدد_دوم
+    return first_number * second_number
 
-def ضرب(عدد_اول: float, عدد_دوم: float) -> float:
+def get_number(prompt: str) -> float:
     """
-    این تابع دو عدد را در هم ضرب می‌کند.
-    """
-    return عدد_اول * عدد_دوم
-
-def دریافت_عدد(پیام_ورودی: str) -> float:
-    """
-    از کاربر یک عدد دریافت می‌کند و از صحیح بودن ورودی اطمینان حاصل می‌کند.
+    Gets a number from the user and ensures the input is valid.
     """
     while True:
         try:
-            عدد_ورودی = float(input(پیام_ورودی))
-            return عدد_ورودی
+            user_input = float(input(prompt))
+            return user_input
         except ValueError:
-            print("خطا: لطفاً یک عدد معتبر وارد کنید.")
+            print("Error: Please enter a valid number.")
 
-def نمایش_منو():
-    """منوی گزینه‌ها را به کاربر نمایش می‌دهد."""
-    print("\nعملیات مورد نظر را انتخاب کنید:")
-    print("1. جمع (+)")
-    print("2. تفریق (-)")
-    print("3. ضرب (*)")
-    print("4. خروج")
+def show_menu():
+    """Displays the operation menu to the user."""
+    print("\nSelect the desired operation:")
+    print("1. Addition (+)")
+    print("2. Subtraction (-)")
+    print("3. Multiplication (*)")
+    print("4. Exit")
 
 def run_calculator():
-    """تابع اصلی برای اجرای برنامه ماشین حساب."""
-    print("ماشین حساب فوق ساده ترمینالی")
+    """Main function to run the calculator program."""
+    print("Super Simple Terminal Calculator")
 
     while True:
-        نمایش_منو()
-        انتخاب_کاربر = input("گزینه خود را وارد کنید (1-4): ")
+        show_menu()
+        user_choice = input("Enter your choice (1-4): ")
 
-        if انتخاب_کاربر == '4':
-            print("خداحافظ!")
+        if user_choice == '4':
+            print("Goodbye!")
             break
 
-        if انتخاب_کاربر not in ('1', '2', '3'):
-            print("خطا: گزینه نامعتبر است. لطفاً عددی بین 1 تا 4 انتخاب کنید.")
+        if user_choice not in ('1', '2', '3'):
+            print("Error: Invalid option. Please choose a number between 1 and 4.")
             continue
 
-        عدد_اول = دریافت_عدد("عدد اول را وارد کنید: ")
-        عدد_دوم = دریافت_عدد("عدد دوم را وارد کنید: ")
+        first_number = get_number("Enter the first number: ")
+        second_number = get_number("Enter the second number: ")
 
-        نتیجه = None
-        عملیات_انتخابی = ""
+        result = None
+        operation = ""
 
-        if انتخاب_کاربر == '1':
-            نتیجه = جمع(عدد_اول, عدد_دوم)
-            عملیات_انتخابی = "جمع"
-        elif انتخاب_کاربر == '2':
-            نتیجه = تفریق(عدد_اول, عدد_دوم)
-            عملیات_انتخابی = "تفریق"
-        elif انتخاب_کاربر == '3':
-            نتیجه = ضرب(عدد_اول, عدد_دوم)
-            عملیات_انتخابی = "ضرب"
+        if user_choice == '1':
+            result = add(first_number, second_number)
+            operation = "addition"
+        elif user_choice == '2':
+            result = subtract(first_number, second_number)
+            operation = "subtraction"
+        elif user_choice == '3':
+            result = multiply(first_number, second_number)
+            operation = "multiplication"
 
-        if نتیجه is not None:
-            print(f"نتیجه {عملیات_انتخابی} {عدد_اول} و {عدد_دوم} برابر است با: {نتیجه}")
+        if result is not None:
+            print(f"The result of {operation} between {first_number} and {second_number} is: {result}")
 
 if __name__ == "__main__":
     run_calculator()
